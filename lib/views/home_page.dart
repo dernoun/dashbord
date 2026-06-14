@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../models/user.dart';
 
 class HomePage extends StatelessWidget {
-  final Client user;
+  final Client client;
 
   const HomePage({
     super.key,
-    required this.user,
+    required this.client,
   });
 
   @override
@@ -43,12 +43,12 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Welcome, ${user.tenantName}!',
+              'Welcome, ${client.tenantName}!',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'User ID: ${user.tenantId}',
+              'User ID: ${client.tenantId}',
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 40),

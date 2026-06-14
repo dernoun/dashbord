@@ -13,12 +13,21 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoginLoading());
     try {
       final response = await authService.login(username, password);
-      final user = Client(
-        tenantId: response.id,
-        tenantName: response.name,
-        token: response.token,
+      // Create multiple Client instances for each client in the response
+      final clients = response.clients.entries.map((entry) {
+        return Client(
+          tenantId: entry.key,
+          tenantName: entry.value,
+          token: response.token,
+        );
+      }).toList();
+      emit(
+        LoginSuccess(
+          clients.isNotEmpty
+              ? clients.first
+              : Client(tenantId: '', tenantName: '', token: response.token),
+        ),
       );
-      emit(LoginSuccess(user));
     } on IdempiereDatabaseException catch (e) {
       emit(LoginFailure(e.message));
     } catch (e) {

@@ -40,13 +40,15 @@ class _LoginViewState extends State<LoginView> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Welcome ${state.user.username}!'),
+                content: Text('Welcome ${state.client.tenantName}!'),
                 backgroundColor: Colors.green,
               ),
             );
             // Navigate to home page after successful login
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage(user: state.user)),
+              MaterialPageRoute(
+                builder: (context) => HomePage(client: state.client),
+              ),
             );
           } else if (state is LoginFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
