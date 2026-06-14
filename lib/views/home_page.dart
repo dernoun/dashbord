@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../models/user.dart';
 
 class HomePage extends StatelessWidget {
-  final User user;
+  final Client user;
 
   const HomePage({
     super.key,
@@ -42,12 +43,12 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Welcome, ${user.username}!',
+              'Welcome, ${user.tenantName}!',
               style: const TextStyle(fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
-              'User ID: ${user.id}',
+              'User ID: ${user.tenantId}',
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 40),

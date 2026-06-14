@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../models/user.dart';
 
 abstract class LoginState extends Equatable {
@@ -17,12 +18,12 @@ class LoginLoading extends LoginState {
 }
 
 class LoginSuccess extends LoginState {
-  final User user;
+  final Client client;
 
-  const LoginSuccess(this.user);
+  const LoginSuccess(this.client);
 
   @override
-  List<Object?> get props => [user];
+  List<Object?> get props => [client];
 }
 
 class LoginFailure extends LoginState {

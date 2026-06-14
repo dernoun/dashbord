@@ -41,7 +41,7 @@ class AuthPage extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         if (state is LoginSuccess) {
-          return HomePage(user: state.user);
+          return HomePage(user: state.client);
         }
         return const LoginView();
       },

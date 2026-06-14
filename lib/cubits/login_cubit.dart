@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../models/user.dart';
 import '../services/idempiere_auth_service.dart';
 import 'login_state.dart';
@@ -12,9 +13,9 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoginLoading());
     try {
       final response = await authService.login(username, password);
-      final user = User(
-        id: response.id,
-        username: response.name,
+      final user = Client(
+        tenantId: response.id,
+        tenantName: response.name,
         token: response.token,
       );
       emit(LoginSuccess(user));
