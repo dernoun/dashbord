@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dashbord/config/app_config.dart';
 import 'package:dio/dio.dart';
 
 import '../models/login_response.dart';
@@ -11,7 +12,8 @@ class IdempiereDatabaseException implements Exception {
 }
 
 class IdempiereAuthService {
-  final String baseUrl = 'https://test.idempiere.org:443/api/v1';
+  final String baseUrl = AppConfig.baseUrl;
+  final int timeoutSeconds = AppConfig.timeoutSeconds;
 
   Future<LoginResponse> login(String username, String password) async {
     try {
@@ -23,7 +25,7 @@ class IdempiereAuthService {
             data: {'userName': username, 'password': password},
           )
           .timeout(
-            const Duration(seconds: 30),
+            Duration(seconds: timeoutSeconds),
             onTimeout: () {
               throw IdempiereDatabaseException('Connection timeout');
             },
