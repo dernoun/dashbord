@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class LoginResponse extends Equatable {
-  final String token;
-  final Map<String, String> clients;
 
   const LoginResponse({
     required this.token,
@@ -10,11 +8,11 @@ class LoginResponse extends Equatable {
   });
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
-    final Map<String, String> clientsMap = {};
+    final Map<String, String> clientsMap = <String, String>{};
     final clientsRaw = json['clients'];
     for (var value in clientsRaw) {
       if (value is Map<String, String>) {
-        value.forEach((key, val) {
+        value.forEach((String key, String val) {
           clientsMap[key] = val;
         });
       }
@@ -25,7 +23,9 @@ class LoginResponse extends Equatable {
       clients: clientsMap,
     );
   }
+  final String token;
+  final Map<String, String> clients;
 
   @override
-  List<Object?> get props => [token, clients];
+  List<Object?> get props => <Object?>[token, clients];
 }

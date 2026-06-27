@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:dashbord/models/user.dart';
 
 class HomePage extends StatelessWidget {
-  final Client client;
 
   const HomePage({
     super.key,
     required this.client,
   });
+  final Client client;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Dashboard'),
-        actions: [
+        actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             const Icon(
               Icons.check_circle,
               size: 80,

@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       appBar: AppBar(title: const Text('iDempiere Login'), centerTitle: true),
       body: BlocListener<LoginCubit, LoginState>(
-        listener: (context, state) {
+        listener: (BuildContext context, LoginState state) {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -47,7 +47,7 @@ class _LoginViewState extends State<LoginView> {
             // Navigate to home page after successful login
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => HomePage(client: state.client),
+                builder: (BuildContext context) => HomePage(client: state.client),
               ),
             );
           } else if (state is LoginFailure) {
@@ -62,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   // Logo/Header
                   Icon(
                     Icons.security,
@@ -130,7 +130,7 @@ class _LoginViewState extends State<LoginView> {
 
                   // Login Button
                   BlocBuilder<LoginCubit, LoginState>(
-                    builder: (context, state) {
+                    builder: (BuildContext context, LoginState state) {
                       return SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -176,7 +176,7 @@ class _LoginViewState extends State<LoginView> {
 
                   // Error Message Display
                   BlocBuilder<LoginCubit, LoginState>(
-                    builder: (context, state) {
+                    builder: (BuildContext context, LoginState state) {
                       if (state is LoginFailure) {
                         return Container(
                           padding: const EdgeInsets.all(12),

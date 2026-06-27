@@ -20,12 +20,12 @@ class MainApp extends StatelessWidget {
       title: 'iDempiere ERP',
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: BlocProvider(
-        create: (context) => LoginCubit(authService: IdempiereAuthService()),
+        create: (BuildContext context) => LoginCubit(authService: IdempiereAuthService()),
         child: const AuthPage(),
       ),
-      routes: {
-        '/login': (context) => BlocProvider(
-          create: (context) => LoginCubit(authService: IdempiereAuthService()),
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => BlocProvider(
+          create: (BuildContext context) => LoginCubit(authService: IdempiereAuthService()),
           child: const LoginView(),
         ),
       },
@@ -39,7 +39,7 @@ class AuthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
-      builder: (context, state) {
+      builder: (BuildContext context, LoginState state) {
         if (state is LoginSuccess) {
           return HomePage(client: state.client);
         }

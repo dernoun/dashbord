@@ -8,8 +8,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:dashbord/models/login_response.dart';
 
 class IdempiereDatabaseException implements Exception {
-  final String message;
   IdempiereDatabaseException(this.message);
+  final String message;
 }
 
 class IdempiereAuthService {
@@ -20,12 +20,12 @@ class IdempiereAuthService {
 
   Future<LoginResponse> login(String username, String password) async {
     try {
-      final dio = Dio();
-      final response = await dio
+      final Dio dio = Dio();
+      final Response<dynamic> response = await dio
           .post(
             '$baseUrl/auth/tokens',
-            options: Options(headers: {'Content-Type': 'application/json'}),
-            data: {'userName': username, 'password': password},
+            options: Options(headers: <String, dynamic>{'Content-Type': 'application/json'}),
+            data: <String, String>{'userName': username, 'password': password},
           )
           .timeout(
             Duration(seconds: timeoutSeconds),
@@ -41,7 +41,7 @@ class IdempiereAuthService {
         final jsonResponse = response.data is String ? jsonDecode(response.data) : response.data;
 
         // store token securely
-        final tokenValue = jsonResponse['token']?.toString();
+        final String? tokenValue = jsonResponse['token']?.toString();
         if (tokenValue != null && tokenValue.isNotEmpty) {
           try {
             await _secureStorage.write(key: _tokenKey, value: tokenValue);

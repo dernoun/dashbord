@@ -1,3 +1,4 @@
+import 'package:dashbord/models/login_response.dart';
 import 'package:dashbord/models/user.dart';
 import 'package:dashbord/services/idempiere_auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,16 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final IdempiereAuthService authService;
 
   LoginCubit({required this.authService}) : super(const LoginInitial());
+  final IdempiereAuthService authService;
 
   Future<void> login(String username, String password) async {
     emit(const LoginLoading());
     try {
-      final response = await authService.login(username, password);
+      final LoginResponse response = await authService.login(username, password);
       // Create multiple Client instances for each client in the response
-      final clients = response.clients.entries.map((entry) {
+      final List<Client> clients = response.clients.entries.map((MapEntry<String, String> entry) {
         return Client(
           tenantId: entry.key,
           tenantName: entry.value,
@@ -31,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
     } on IdempiereDatabaseException catch (e) {
       emit(LoginFailure(e.message));
     } catch (e) {
-      emit(LoginFailure('An unexpected error occurred'));
+      emit(const LoginFailure('An unexpected error occurred'));
     }
   }
 
