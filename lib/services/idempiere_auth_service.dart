@@ -2,10 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dashbord/config/app_config.dart';
+import 'package:dashbord/models/login_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-import 'package:dashbord/models/login_response.dart';
 
 class IdempiereDatabaseException implements Exception {
   IdempiereDatabaseException(this.message);
@@ -38,7 +37,9 @@ class IdempiereAuthService {
       log('Login Response Body: ${response.data}');
 
       if (response.statusCode == 200) {
-        final jsonResponse = response.data is String ? jsonDecode(response.data) : response.data;
+        final Map<String, dynamic> jsonResponse = response.data is String
+            ? jsonDecode(response.data)
+            : response.data as Map<String, dynamic>;
 
         // store token securely
         final String? tokenValue = jsonResponse['token']?.toString();

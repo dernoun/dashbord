@@ -17,7 +17,7 @@ linter:
 
     # Type and API usage
     always_declare_return_types: true
-    always_specify_types: true
+    always_specify_types: false
     annotate_overrides: true
     avoid_dynamic_calls: true
     avoid_redundant_argument_values: true
