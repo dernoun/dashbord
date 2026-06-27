@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubits/login_cubit.dart';
-import '../cubits/login_state.dart';
-import 'home_page.dart';
+import 'package:dashbord/cubits/login_cubit.dart';
+import 'package:dashbord/cubits/login_state.dart';
+import 'package:dashbord/views/home_page.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});

@@ -1,7 +1,7 @@
+import 'package:dashbord/models/user.dart';
+import 'package:dashbord/services/idempiere_auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../models/user.dart';
-import '../services/idempiere_auth_service.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {

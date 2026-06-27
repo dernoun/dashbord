@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/user.dart';
+import 'package:dashbord/models/user.dart';
 
 class HomePage extends StatelessWidget {
   final Client client;

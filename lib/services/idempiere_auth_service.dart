@@ -5,7 +5,7 @@ import 'package:dashbord/config/app_config.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../models/login_response.dart';
+import 'package:dashbord/models/login_response.dart';
 
 class IdempiereDatabaseException implements Exception {
   final String message;
